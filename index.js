@@ -1,7 +1,20 @@
-let http = require('http');
+const express = require('express');
 
-http.createServer((req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/plain'})
-    res.write('Hello World\n');
-    res.end();
-}).listen(8080);
+let app = express();
+
+const PORT = 5000;
+const productRoute = require('./routes/product')
+
+// app.get('/get-product', (req, res) => {
+//     res.send('this product is valid');
+// });
+
+app.use(productRoute)
+
+app.listen(PORT, (req,res) => {
+    console.log("server on port " + `${PORT}`);
+});
+
+
+
+
